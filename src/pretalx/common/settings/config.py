@@ -77,6 +77,10 @@ CONFIG = {
         },
     },
     "mail": {
+        "backend": {
+            "default": "django.core.mail.backends.smtp.EmailBackend",
+            "env": os.getenv("EMAIL_BACKEND"),
+        },
         "from": {
             "default": "admin@localhost",
             "env": os.getenv("PRETALX_MAIL_FROM"),
@@ -104,6 +108,22 @@ CONFIG = {
         "ssl": {
             "default": "False",
             "env": os.getenv("PRETALX_MAIL_SSL"),
+        },
+        "gmail_api_user_id": {
+            "default": "me",
+            "env": os.getenv("GMAIL_API_USER_ID")
+        },
+        "gmail_api_client_id": {
+            "default": "",
+            "env": os.getenv("GMAIL_API_CLIENT_ID")
+        },
+        "gmail_api_client_secret": {
+            "default": "",
+            "env": os.getenv("GMAIL_API_CLIENT_SECRET")
+        },
+        "gmail_api_refresh_token": {
+            "default": "",
+            "env": os.getenv("GMAIL_API_REFRESH_TOKEN")
         },
     },
     "redis": {

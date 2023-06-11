@@ -50,10 +50,16 @@
         </li>
         <li>{% translate "Mails" %}
             <ul>
-                <li>{% translate "Host" %}: <code>{{ settings.EMAIL_HOST|copyable }}</code></li>
-                <li>{% translate "Port" %}: <code>{{ settings.EMAIL_PORT|copyable }}</code></li>
-                <li>{% translate "User" %}: <code>{{ settings.EMAIL_HOST_USER|copyable }}</code></li>
-                <li>{% translate "Password" %}: {% if settings.EMAIL_HOST_PASSWORD %}{% translate "An email password has been set." %}{% else %}{% translate "No email password has been set." %}{% endif %}</li>
+                <li>{% translate "Email Backend" %}: <code>{{ settings.EMAIL_BACKEND|copyable }}</code></li>
+                {% if settings.EMAIL_BACKEND == 'gmailapi_backend.mail.GmailBackend' %}
+                    <li>{% translate "GMail API User ID" %}: <code>{{ settings.GMAIL_API_USER_ID|copyable }}</code></li>
+                    <li>{% translate "GMail API Client ID" %}: <code>{{ settings.GMAIL_API_CLIENT_ID|copyable }}</code></li>
+                {% else %}
+                    <li>{% translate "Host" %}: <code>{{ settings.EMAIL_HOST|copyable }}</code></li>
+                    <li>{% translate "Port" %}: <code>{{ settings.EMAIL_PORT|copyable }}</code></li>
+                    <li>{% translate "User" %}: <code>{{ settings.EMAIL_HOST_USER|copyable }}</code></li>
+                    <li>{% translate "Password" %}: {% if settings.EMAIL_HOST_PASSWORD %}{% translate "An email password has been set." %}{% else %}{% translate "No email password has been set." %}{% endif %}</li>
+                {% endif %}
             </ul>
         </li>
     </ul>

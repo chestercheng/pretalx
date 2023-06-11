@@ -73,6 +73,7 @@ EXTERNAL_APPS = [
     "jquery",
     "rest_framework.authtoken",
     "rules",
+    "gmailapi_backend",
 ]
 LOCAL_APPS = [
     "pretalx.api",
@@ -282,12 +283,17 @@ MAIL_FROM = SERVER_EMAIL = DEFAULT_FROM_EMAIL = config.get("mail", "from")
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 else:
+    EMAIL_BACKEND = config.get("mail", "backend")
     EMAIL_HOST = config.get("mail", "host")
     EMAIL_PORT = config.get("mail", "port")
     EMAIL_HOST_USER = config.get("mail", "user")
     EMAIL_HOST_PASSWORD = config.get("mail", "password")
     EMAIL_USE_TLS = config.getboolean("mail", "tls")
     EMAIL_USE_SSL = config.getboolean("mail", "ssl")
+    GMAIL_API_USER_ID = config.get("mail", "gmail_api_user_id")
+    GMAIL_API_CLIENT_ID = config.get("mail", "gmail_api_client_id")
+    GMAIL_API_CLIENT_SECRET = config.get("mail", "gmail_api_client_secret")
+    GMAIL_API_REFRESH_TOKEN = config.get("mail", "gmail_api_refresh_token")
 
 
 ## CACHE SETTINGS
